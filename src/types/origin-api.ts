@@ -1,5 +1,7 @@
-// Vendored from origin/plugins/api/src/plugin.ts
-// Update when @origin/api changes (or replace with npm import once published)
+// Vendored from @origin-cards/api
+// Once published to npm, replace this file with:
+//   npm install @origin-cards/api
+// and update imports to: import type { ... } from "@origin-cards/api"
 
 import type React from "react";
 

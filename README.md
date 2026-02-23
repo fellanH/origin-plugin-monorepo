@@ -102,7 +102,7 @@ export default function MyPlugin({ context }: { context: PluginContext }) {
 
 ## Types
 
-`src/types/origin-api.ts` contains a vendored copy of the Origin plugin API types (`PluginManifest`, `PluginContext`, `PluginComponent`, `PluginModule`). Update it when the API changes, or replace with a direct import once `@origin/api` is published to npm.
+`src/types/origin-api.ts` contains a vendored copy of the Origin plugin API types (`PluginManifest`, `PluginContext`, `PluginComponent`, `PluginModule`). Update it when the API changes, or replace with a direct import once `@origin-cards/api` is published to npm.
 
 ## Requirements
 
@@ -111,7 +111,7 @@ export default function MyPlugin({ context }: { context: PluginContext }) {
 
 ## Reference
 
-See the [hello plugin](https://github.com/klarhimmel/origin/tree/main/plugins/hello) in the Origin repo — it demonstrates the same structure with detailed comments on every API surface.
+See the [hello plugin](https://github.com/fellanH/origin/tree/main/plugins/hello) in the Origin repo — it demonstrates the same structure with detailed comments on every API surface.
 
 ## License
 
