@@ -24,8 +24,11 @@ export default function DevShell() {
 
   return (
     <div
-      style={{ fontFamily: "system-ui, sans-serif" }}
-      className={isDark ? "bg-zinc-950 text-zinc-100" : "bg-zinc-100 text-zinc-900"}
+      style={{
+        fontFamily: "system-ui, sans-serif",
+        background: isDark ? "#09090b" : "#f4f4f5",
+        color: isDark ? "#f4f4f5" : "#18181b",
+      }}
     >
       <div
         style={{
