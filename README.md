@@ -24,6 +24,12 @@ npm run dev
 # → opens at http://localhost:5173
 ```
 
+## Hot-reload development
+
+Run `npm run dev:watch` to watch for changes and auto-install to origin.
+
+origin detects the `.hotreload` sentinel file and reloads the plugin without restarting the app.
+
 ## Dev shell
 
 `npm run dev` opens your plugin inside `DevShell` — a browser-based preview that simulates Origin's card. It includes:
@@ -270,15 +276,16 @@ Keep a `CHANGELOG.md` to communicate changes to users:
 
 ## Development scripts
 
-| Script                   | Description                             |
-| ------------------------ | --------------------------------------- |
-| `npm run dev`            | Start DevShell with hot reload          |
-| `npm run build`          | Build plugin to `dist/`                 |
-| `npm run lint`           | Run ESLint on `src/`                    |
-| `npm run format`         | Format `src/` with Prettier             |
-| `npm test`               | Run Vitest unit tests                   |
-| `npm run install:origin` | Install built plugin into Origin        |
-| `npm run install:watch`  | Watch `dist/` and re-install on changes |
+| Script                   | Description                                     |
+| ------------------------ | ----------------------------------------------- |
+| `npm run dev`            | Start DevShell with hot reload                  |
+| `npm run build`          | Build plugin to `dist/`                         |
+| `npm run lint`           | Run ESLint on `src/`                            |
+| `npm run format`         | Format `src/` with Prettier                     |
+| `npm test`               | Run Vitest unit tests                           |
+| `npm run install:origin` | Install built plugin into Origin                |
+| `npm run install:watch`  | Watch `dist/` and re-install on changes         |
+| `npm run dev:watch`      | Build + install in watch mode with HMR sentinel |
 
 ## Types
 
