@@ -1,48 +1,25 @@
 {
-  "name": "origin-plugin-starter",
-  "version": "0.1.0",
-  "description": "Starter template for building Origin plugins",
-  "license": "MIT",
-  "author": "Felix Hellström <felix@klarhimmel.se>",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/fellanH/origin-plugin-starter"
-  },
-  "keywords": [
-    "origin-plugin",
-    "origin-cards",
-    "tauri"
-  ],
-  "engines": {
-    "node": ">=18"
-  },
+  "name": "origin-plugin-monorepo",
+  "private": true,
   "type": "module",
+  "workspaces": ["packages/*"],
   "scripts": {
-    "dev": "vite",
-    "build": "vite build --mode lib",
-    "lint": "eslint src",
-    "format": "prettier --write src",
-    "test": "vitest run",
-    "install:origin": "node scripts/install.mjs",
-    "install:watch": "node scripts/watch-install.mjs",
-    "dev:watch": "concurrently \"vite build --mode lib --watch\" \"node scripts/watch-install.mjs\""
-  },
-  "peerDependencies": {
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "build": "node scripts/build-all.mjs",
+    "typecheck": "tsc --build packages/*/tsconfig.json",
+    "lint": "eslint packages/*/src",
+    "changeset": "changeset",
+    "version": "changeset version",
+    "publish:packages": "changeset publish"
   },
   "devDependencies": {
+    "@changesets/cli": "^2.27.0",
+    "@vitejs/plugin-react": "^4.4.0",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
-    "@vitejs/plugin-react": "^4.4.0",
-    "concurrently": "^9.2.1",
-    "eslint": "^9.39.3",
-    "prettier": "^3.8.1",
+    "eslint": "^9.0.0",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0",
     "typescript": "~5.7.2",
-    "typescript-eslint": "^8.56.1",
-    "vite": "^7.0.0",
-    "vitest": "^3.2.4"
+    "typescript-eslint": "^8.0.0",
+    "vite": "^7.0.0"
   }
 }

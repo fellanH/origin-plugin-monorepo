@@ -23,23 +23,21 @@ export default defineConfig(({ mode }) => {
       plugins: [react(), originManifest()],
       build: {
         lib: {
-          entry: resolve(__dirname, "src/index.tsx"),
+          entry: resolve(__dirname, "src/main.tsx"),
           formats: ["es"],
           fileName: "index",
         },
         rollupOptions: {
           // React must NOT be bundled — Origin provides it at runtime.
-          // If you bundle React your plugin will crash with "multiple React instances".
           external: ["react", "react-dom", "react/jsx-runtime"],
         },
       },
     };
   }
 
-  // Dev mode: run the DevShell app
+  // HTML app mode (for direct browser preview)
   return {
     plugins: [react()],
-    root: "dev",
     server: { port: 5173 },
   };
 });

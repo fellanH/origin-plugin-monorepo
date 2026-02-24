@@ -1,6 +1,5 @@
 node_modules/
 dist/
-package-lock.json
-*.local
-.env
 .DS_Store
+*.local
+.changeset/*.md

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://unpkg.com/@changesets/config@3.0.0/schema.json",
+  "changelog": "@changesets/cli/changelog",
+  "commit": false,
+  "fixed": [],
+  "linked": [["@origin-cards/api", "@origin-cards/sdk"]],
+  "access": "public",
+  "baseBranch": "main",
+  "updateInternalDependencies": "patch",
+  "ignore": [
+    "@origin-cards/hello",
+    "@origin-cards/notepad",
+    "@origin-cards/filetree",
+    "@origin-cards/monaco",
+    "@origin-cards/browser",
+    "@origin-cards/github",
+    "@origin-cards/terminal"
+  ]
+}

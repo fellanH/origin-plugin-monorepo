@@ -1,0 +1,17 @@
+{
+  "name": "@origin-cards/template",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "vite build --mode lib"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "*",
+    "react": "*",
+    "typescript": "*",
+    "vite": "*"
+  },
+  "_peerDependenciesNote": "Once @origin-cards/api is published (Phase 2), add: peerDependencies: { '@origin-cards/api': '>=0.7.0' }"
+}
