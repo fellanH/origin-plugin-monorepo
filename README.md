@@ -113,6 +113,12 @@ export default function MyPlugin({ context }: { context: PluginContext }) {
 
 See the [hello plugin](https://github.com/fellanH/origin/tree/main/plugins/hello) in the Origin repo — it demonstrates the same structure with detailed comments on every API surface.
 
+## Discoverability
+
+Tag your plugin repo with the `origin-plugin` GitHub topic so users can find it via GitHub search.
+
+Browse community plugins: [github.com/fellanH/origin/blob/main/PLUGINS.md](https://github.com/fellanH/origin/blob/main/PLUGINS.md)
+
 ## License
 
 MIT
