@@ -1,0 +1,10 @@
+import type { PluginManifest } from "@origin-cards/api";
+
+export const manifest: PluginManifest = {
+  id: "com.origin.filetree",
+  name: "File Tree",
+  version: "0.1.0",
+  description: "Browse your local filesystem",
+  icon: "📁",
+  requiredCapabilities: ["fs:read", "fs:write", "dialog:open"],
+};

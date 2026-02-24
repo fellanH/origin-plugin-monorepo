@@ -1,0 +1,9 @@
+import type { PluginManifest } from "@origin-cards/api";
+
+export const manifest: PluginManifest = {
+  id: "com.origin.github",
+  name: "GitHub PRs",
+  version: "0.1.0",
+  description: "Track open pull requests for any GitHub repository",
+  icon: "🐙",
+};
