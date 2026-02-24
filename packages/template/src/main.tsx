@@ -1,13 +1,7 @@
+import type { PluginContext } from "@origin-cards/api";
+
 // Re-export manifest so Origin can read metadata without fully loading the plugin.
 export { manifest } from "./manifest";
-
-// TODO: Import PluginContext from "@origin-cards/api" once published to npm.
-// Phase 2 will replace this inline type with the real package import.
-export interface PluginContext {
-  cardId: string;
-  workspacePath: string;
-  theme: "light" | "dark";
-}
 
 export default function TemplatePlugin({ context }: { context: PluginContext }) {
   return (

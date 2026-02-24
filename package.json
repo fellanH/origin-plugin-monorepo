@@ -2,7 +2,9 @@
   "name": "origin-plugin-monorepo",
   "private": true,
   "type": "module",
-  "workspaces": ["packages/*"],
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
     "build": "node scripts/build-all.mjs",
     "typecheck": "tsc --build packages/*/tsconfig.json",
@@ -13,9 +15,10 @@
   },
   "devDependencies": {
     "@changesets/cli": "^2.27.0",
-    "@vitejs/plugin-react": "^4.4.0",
+    "@types/node": "^25.3.0",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
+    "@vitejs/plugin-react": "^4.4.0",
     "eslint": "^9.0.0",
     "react": "^19.0.0",
     "typescript": "~5.7.2",

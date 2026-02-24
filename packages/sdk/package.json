@@ -1,0 +1,30 @@
+{
+  "name": "@origin-cards/sdk",
+  "version": "0.7.0",
+  "description": "Filesystem, dialog, invoke, and event helpers for Origin L1 plugins",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsup src/index.ts --format esm --dts --clean --external react",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@origin-cards/api": "*"
+  },
+  "peerDependencies": {
+    "react": ">=19.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0",
+    "tsup": "^8.0.0",
+    "typescript": "~5.7.2"
+  }
+}
