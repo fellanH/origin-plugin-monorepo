@@ -1,0 +1,24 @@
+{
+  "name": "@origin-cards/terminal",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "vite build",
+    "dev": "vite"
+  },
+  "dependencies": {
+    "@origin-cards/api": "*",
+    "@origin-cards/sdk": "*",
+    "@xterm/xterm": "^5.5.0",
+    "@xterm/addon-fit": "^0.10.0",
+    "@xterm/addon-webgl": "^0.18.0",
+    "@xterm/addon-clipboard": "^0.1.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "*",
+    "react": "*",
+    "typescript": "*",
+    "vite": "*"
+  }
+}

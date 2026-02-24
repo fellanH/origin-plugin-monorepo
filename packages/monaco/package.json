@@ -1,0 +1,21 @@
+{
+  "name": "@origin-cards/monaco",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "vite build",
+    "dev": "vite"
+  },
+  "dependencies": {
+    "@monaco-editor/react": "^4.6.0",
+    "@origin-cards/api": "*",
+    "@origin-cards/sdk": "*"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "*",
+    "react": "*",
+    "typescript": "*",
+    "vite": "*"
+  }
+}
