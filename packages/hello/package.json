@@ -1,0 +1,21 @@
+{
+  "name": "@origin-cards/hello",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "vite build",
+    "dev": "vite"
+  },
+  "dependencies": {
+    "@origin-cards/api": "*",
+    "@origin-cards/sdk": "*"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "*",
+    "react": "*",
+    "react-dom": "*",
+    "typescript": "*",
+    "vite": "*"
+  }
+}

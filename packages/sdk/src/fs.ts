@@ -26,6 +26,20 @@ export function readDir(path: string): Promise<DirEntry[]> {
   return invoke<DirEntry[]>("plugin:fs|read_dir", { path });
 }
 
+export function mkdir(
+  path: string,
+  options?: { recursive?: boolean },
+): Promise<void> {
+  return invoke<void>("plugin:fs|mkdir", {
+    path,
+    options: options ?? {},
+  });
+}
+
+export function exists(path: string): Promise<boolean> {
+  return invoke<boolean>("plugin:fs|exists", { path });
+}
+
 export function openDialog(options?: OpenDialogOptions): Promise<string | null> {
   return invoke<string | null>("plugin:dialog|open", (options ?? {}) as Record<string, unknown>);
 }
