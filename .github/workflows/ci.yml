@@ -16,4 +16,8 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm install
+      # Build @origin-cards/api and @origin-cards/sdk first so their dist/
+      # declaration files exist before TypeScript typechecks the plugin packages.
+      - run: npm run build --workspace=packages/api
+      - run: npm run build --workspace=packages/sdk
       - run: npm run typecheck
