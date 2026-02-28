@@ -16,11 +16,11 @@ import type { OriginChannelMap, PluginBus } from "./plugin";
  */
 export function useBusChannel<K extends keyof OriginChannelMap>(
   bus: PluginBus,
-  channel: K,
+  channel: K
 ): OriginChannelMap[K] | undefined {
   const subscribe = useCallback(
     (notify: () => void) => bus.subscribe(channel, notify),
-    [bus, channel],
+    [bus, channel]
   );
   return useSyncExternalStore(subscribe, () => bus.read(channel));
 }

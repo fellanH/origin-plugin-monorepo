@@ -19,11 +19,7 @@ import { WebglAddon } from "@xterm/addon-webgl";
 import { ClipboardAddon } from "@xterm/addon-clipboard";
 import "@xterm/xterm/css/xterm.css";
 
-export default function TerminalPlugin({
-  context,
-}: {
-  context: IframePluginContextWithConfig;
-}) {
+export default function TerminalPlugin({ context }: { context: IframePluginContextWithConfig }) {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -53,14 +49,10 @@ export default function TerminalPlugin({
 
     // Subscribe to PTY data stream via the SDK event bridge.
     // The host proxies pty:data events from the Rust PTY channel.
-    const unsubPty = onEvent(
-      "pty:data",
-      { id: context.cardId },
-      (payload) => {
-        const data = (payload as { data: number[] }).data;
-        term.write(new Uint8Array(data));
-      },
-    );
+    const unsubPty = onEvent("pty:data", { id: context.cardId }, (payload) => {
+      const data = (payload as { data: number[] }).data;
+      term.write(new Uint8Array(data));
+    });
 
     term.onData((data) => {
       invoke("pty_write", {
@@ -101,9 +93,6 @@ export default function TerminalPlugin({
   }, [context.cardId]);
 
   return (
-    <div
-      ref={containerRef}
-      style={{ width: "100%", height: "100%", background: "#1e1e1e" }}
-    />
+    <div ref={containerRef} style={{ width: "100%", height: "100%", background: "#1e1e1e" }} />
   );
 }

@@ -1,10 +1,5 @@
 import { useEffect, useState } from "react";
-import {
-  readTextFile,
-  writeTextFile,
-  mkdir,
-  exists,
-} from "@origin-cards/sdk";
+import { readTextFile, writeTextFile, mkdir, exists } from "@origin-cards/sdk";
 import type { IframePluginContextWithConfig } from "@origin-cards/sdk";
 
 const DEFAULT_URL = "http://localhost:3000";
@@ -12,16 +7,11 @@ const DEFAULT_URL = "http://localhost:3000";
 /** Join a parent path with a child name using the OS-appropriate separator. */
 function joinPath(base: string, name: string): string {
   const sep = base.includes("\\") ? "\\" : "/";
-  const trimmed =
-    base.endsWith("/") || base.endsWith("\\") ? base.slice(0, -1) : base;
+  const trimmed = base.endsWith("/") || base.endsWith("\\") ? base.slice(0, -1) : base;
   return `${trimmed}${sep}${name}`;
 }
 
-export default function BrowserPlugin({
-  context,
-}: {
-  context: IframePluginContextWithConfig;
-}) {
+export default function BrowserPlugin({ context }: { context: IframePluginContextWithConfig }) {
   const [url, setUrl] = useState(DEFAULT_URL);
   const [inputValue, setInputValue] = useState(DEFAULT_URL);
   const [isLoading, setIsLoading] = useState(false);

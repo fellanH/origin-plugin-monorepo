@@ -9,20 +9,14 @@ const _textCache = new Map<string, string>();
 /** Join path segments using the OS-appropriate separator. */
 function joinPath(base: string, ...parts: string[]): string {
   const sep = base.includes("\\") ? "\\" : "/";
-  let result = base.endsWith("/") || base.endsWith("\\")
-    ? base.slice(0, -1)
-    : base;
+  let result = base.endsWith("/") || base.endsWith("\\") ? base.slice(0, -1) : base;
   for (const part of parts) {
     result = `${result}${sep}${part}`;
   }
   return result;
 }
 
-export default function NotepadPlugin({
-  context,
-}: {
-  context: IframePluginContextWithConfig;
-}) {
+export default function NotepadPlugin({ context }: { context: IframePluginContextWithConfig }) {
   const { cardId, workspacePath, theme } = context;
 
   // Initialise from cache — avoids empty flash on remount after split
@@ -95,7 +89,7 @@ export default function NotepadPlugin({
       if (saveTimerRef.current) clearTimeout(saveTimerRef.current);
       saveTimerRef.current = setTimeout(() => void save(value), 800);
     },
-    [cardId, save],
+    [cardId, save]
   );
 
   return (

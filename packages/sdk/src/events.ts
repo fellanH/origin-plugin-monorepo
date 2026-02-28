@@ -21,7 +21,7 @@ import type { HostToPluginMessage } from "@origin-cards/api";
 export function onEvent(
   event: string,
   args: Record<string, unknown> | undefined,
-  handler: (payload: unknown) => void,
+  handler: (payload: unknown) => void
 ): () => void {
   const subscriptionId = crypto.randomUUID();
 
@@ -34,17 +34,11 @@ export function onEvent(
 
   window.addEventListener("message", onMessage);
 
-  window.parent.postMessage(
-    { type: "ORIGIN_EVENT_SUBSCRIBE", subscriptionId, event, args },
-    "*",
-  );
+  window.parent.postMessage({ type: "ORIGIN_EVENT_SUBSCRIBE", subscriptionId, event, args }, "*");
 
   return () => {
     window.removeEventListener("message", onMessage);
-    window.parent.postMessage(
-      { type: "ORIGIN_EVENT_UNSUBSCRIBE", subscriptionId },
-      "*",
-    );
+    window.parent.postMessage({ type: "ORIGIN_EVENT_UNSUBSCRIBE", subscriptionId }, "*");
   };
 }
 
@@ -70,7 +64,7 @@ export function onEvent(
 export function useOriginEvent(
   event: string,
   args: Record<string, unknown> | undefined,
-  handler: (payload: unknown) => void,
+  handler: (payload: unknown) => void
 ): void {
   useEffect(() => {
     return onEvent(event, args, handler);

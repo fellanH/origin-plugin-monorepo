@@ -18,10 +18,7 @@ import type { HostToPluginMessage } from "@origin-cards/api";
  * @example
  * const text = await invoke<string>("plugin:fs|read_text_file", { path: "/etc/hosts" });
  */
-export function invoke<T = unknown>(
-  command: string,
-  args?: Record<string, unknown>,
-): Promise<T> {
+export function invoke<T = unknown>(command: string, args?: Record<string, unknown>): Promise<T> {
   return new Promise<T>((resolve, reject) => {
     const id = crypto.randomUUID();
 
@@ -38,9 +35,6 @@ export function invoke<T = unknown>(
 
     window.addEventListener("message", onMessage);
 
-    window.parent.postMessage(
-      { type: "ORIGIN_INVOKE", id, command, args: args ?? {} },
-      "*",
-    );
+    window.parent.postMessage({ type: "ORIGIN_INVOKE", id, command, args: args ?? {} }, "*");
   });
 }

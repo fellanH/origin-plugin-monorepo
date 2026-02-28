@@ -26,10 +26,7 @@ export function readDir(path: string): Promise<DirEntry[]> {
   return invoke<DirEntry[]>("plugin:fs|read_dir", { path });
 }
 
-export function mkdir(
-  path: string,
-  options?: { recursive?: boolean },
-): Promise<void> {
+export function mkdir(path: string, options?: { recursive?: boolean }): Promise<void> {
   return invoke<void>("plugin:fs|mkdir", {
     path,
     options: options ?? {},

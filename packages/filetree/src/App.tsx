@@ -23,8 +23,7 @@ interface TreeNode {
 /** Join a parent path with a child name using the OS-appropriate separator. */
 function joinPath(base: string, name: string): string {
   const sep = base.includes("\\") ? "\\" : "/";
-  const trimmed =
-    base.endsWith("/") || base.endsWith("\\") ? base.slice(0, -1) : base;
+  const trimmed = base.endsWith("/") || base.endsWith("\\") ? base.slice(0, -1) : base;
   return `${trimmed}${sep}${name}`;
 }
 
@@ -51,11 +50,7 @@ async function loadChildren(dirPath: string): Promise<TreeNode[]> {
   });
 }
 
-function insertChildren(
-  nodes: TreeNode[],
-  targetPath: string,
-  children: TreeNode[],
-): TreeNode[] {
+function insertChildren(nodes: TreeNode[], targetPath: string, children: TreeNode[]): TreeNode[] {
   return nodes.map((n) => {
     if (n.path === targetPath) return { ...n, children };
     if (n.children)
@@ -75,13 +70,7 @@ interface TreeItemProps {
   onFileClick: (node: TreeNode) => void;
 }
 
-function TreeItem({
-  node,
-  depth,
-  expandedPaths,
-  onToggle,
-  onFileClick,
-}: TreeItemProps) {
+function TreeItem({ node, depth, expandedPaths, onToggle, onFileClick }: TreeItemProps) {
   const isExpanded = expandedPaths.has(node.path);
   const icon = node.isDirectory ? (isExpanded ? "📂" : "📁") : fileIcon(node);
 
@@ -129,13 +118,8 @@ export default function App() {
   // Bus channel for publishing active-path events
   const publishActivePath = useBusChannel("origin:workspace/active-path");
 
-  const configDir = context
-    ? joinPath(context.workspacePath, "filetree")
-    : null;
-  const configFile =
-    context && configDir
-      ? joinPath(configDir, `${context.cardId}.json`)
-      : null;
+  const configDir = context ? joinPath(context.workspacePath, "filetree") : null;
+  const configFile = context && configDir ? joinPath(configDir, `${context.cardId}.json`) : null;
 
   // Load saved root path on mount
   useEffect(() => {
@@ -221,7 +205,7 @@ export default function App() {
         source: manifest.id,
       });
     },
-    [expandedPaths, publishActivePath],
+    [expandedPaths, publishActivePath]
   );
 
   const handleFileClick = useCallback(
@@ -232,14 +216,12 @@ export default function App() {
         source: manifest.id,
       });
     },
-    [publishActivePath],
+    [publishActivePath]
   );
 
   if (!context) {
     return (
-      <div className="flex h-full items-center justify-center text-xs opacity-40">
-        Connecting…
-      </div>
+      <div className="flex h-full items-center justify-center text-xs opacity-40">Connecting…</div>
     );
   }
 
@@ -254,9 +236,7 @@ export default function App() {
         className={`flex shrink-0 items-center gap-2 border-b px-3 py-2 ${isDark ? "border-zinc-700" : "border-zinc-200"}`}
       >
         <span className="truncate text-xs opacity-60">
-          {rootPath
-            ? rootPath.split(/[\\/]/).pop() || rootPath
-            : "No folder open"}
+          {rootPath ? rootPath.split(/[\\/]/).pop() || rootPath : "No folder open"}
         </span>
         <button
           onClick={handleOpenFolder}
@@ -269,9 +249,7 @@ export default function App() {
       {/* Tree */}
       <div className="min-h-0 flex-1 overflow-y-auto py-1">
         {!rootPath && (
-          <p className="px-3 py-8 text-center text-xs opacity-40">
-            Open a folder to browse files
-          </p>
+          <p className="px-3 py-8 text-center text-xs opacity-40">Open a folder to browse files</p>
         )}
         {tree.map((node) => (
           <TreeItem

@@ -1,17 +1,11 @@
 import type { IframePluginContextWithConfig } from "@origin-cards/sdk";
 import { manifest } from "./manifest";
 
-export default function HelloPlugin({
-  context,
-}: {
-  context: IframePluginContextWithConfig;
-}) {
+export default function HelloPlugin({ context }: { context: IframePluginContextWithConfig }) {
   const isDark = context.theme === "dark";
 
   return (
-    <div
-      className={`h-full p-4 font-mono text-sm ${isDark ? "text-zinc-100" : "text-zinc-900"}`}
-    >
+    <div className={`h-full p-4 font-mono text-sm ${isDark ? "text-zinc-100" : "text-zinc-900"}`}>
       {/* --- MANIFEST ---
           Your plugin's static metadata. Origin reads this to show the plugin in
           the launcher and to identify your plugin at runtime. */}
@@ -20,13 +14,9 @@ export default function HelloPlugin({
         <div>
           <h1 className="font-semibold">
             {manifest.name}{" "}
-            <span className="text-xs font-normal opacity-50">
-              v{manifest.version}
-            </span>
+            <span className="text-xs font-normal opacity-50">v{manifest.version}</span>
           </h1>
-          {manifest.description && (
-            <p className="text-xs opacity-60">{manifest.description}</p>
-          )}
+          {manifest.description && <p className="text-xs opacity-60">{manifest.description}</p>}
         </div>
       </section>
 

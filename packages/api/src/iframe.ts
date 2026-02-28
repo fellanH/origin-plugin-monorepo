@@ -25,5 +25,10 @@ export type PluginToHostMessage =
   | { type: "ORIGIN_BUS_UNSUBSCRIBE"; channel: string }
   | { type: "ORIGIN_CONFIG_SET"; patch: Record<string, unknown> }
   | { type: "ORIGIN_INVOKE"; id: string; command: string; args: Record<string, unknown> }
-  | { type: "ORIGIN_EVENT_SUBSCRIBE"; subscriptionId: string; event: string; args?: Record<string, unknown> }
+  | {
+      type: "ORIGIN_EVENT_SUBSCRIBE";
+      subscriptionId: string;
+      event: string;
+      args?: Record<string, unknown>;
+    }
   | { type: "ORIGIN_EVENT_UNSUBSCRIBE"; subscriptionId: string };

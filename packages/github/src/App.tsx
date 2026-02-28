@@ -51,8 +51,7 @@ function relativeTime(isoDate: string): string {
 function apiErrorMessage(status: number): string {
   if (status === 404)
     return "Repo not found or private. GitHub API requires the repo to be public.";
-  if (status === 403)
-    return "GitHub API rate limit reached. Try again in a few minutes.";
+  if (status === 403) return "GitHub API rate limit reached. Try again in a few minutes.";
   return `GitHub API error (HTTP ${status})`;
 }
 
@@ -91,32 +90,22 @@ function PRRow({ pr, isDark }: PRRowProps): ReactElement {
   return (
     <button
       className={`w-full border-b px-3 py-2.5 text-left transition-colors ${
-        isDark
-          ? "border-zinc-700/50 hover:bg-zinc-800"
-          : "border-zinc-100 hover:bg-zinc-50"
+        isDark ? "border-zinc-700/50 hover:bg-zinc-800" : "border-zinc-100 hover:bg-zinc-50"
       }`}
       onClick={() => openUrl(pr.html_url)}
     >
       <div className="flex items-start gap-2">
-        <span className="mt-0.5 text-xs leading-5">
-          {pr.draft ? "⚫" : "🟢"}
-        </span>
+        <span className="mt-0.5 text-xs leading-5">{pr.draft ? "⚫" : "🟢"}</span>
         <div className="min-w-0 flex-1">
           <div className="flex items-baseline gap-1.5">
             <span className="shrink-0 text-xs opacity-40">#{pr.number}</span>
             <span className="truncate text-sm leading-5">{pr.title}</span>
           </div>
           <div className="mt-1 flex flex-wrap items-center gap-x-1.5 gap-y-1">
-            <img
-              src={pr.user.avatar_url}
-              alt={pr.user.login}
-              className="h-4 w-4 rounded-full"
-            />
+            <img src={pr.user.avatar_url} alt={pr.user.login} className="h-4 w-4 rounded-full" />
             <span className="text-xs opacity-50">{pr.user.login}</span>
             <span className="text-xs opacity-30">·</span>
-            <span className="text-xs opacity-50">
-              {relativeTime(pr.created_at)}
-            </span>
+            <span className="text-xs opacity-50">{relativeTime(pr.created_at)}</span>
             {pr.labels.map((label) => (
               <LabelChip key={label.name} label={label} />
             ))}
@@ -138,9 +127,7 @@ function IssueRow({ issue, isDark }: IssueRowProps): ReactElement {
   return (
     <button
       className={`w-full border-b px-3 py-2.5 text-left transition-colors ${
-        isDark
-          ? "border-zinc-700/50 hover:bg-zinc-800"
-          : "border-zinc-100 hover:bg-zinc-50"
+        isDark ? "border-zinc-700/50 hover:bg-zinc-800" : "border-zinc-100 hover:bg-zinc-50"
       }`}
       onClick={() => openUrl(issue.html_url)}
     >
@@ -148,9 +135,7 @@ function IssueRow({ issue, isDark }: IssueRowProps): ReactElement {
         <span className="mt-0.5 text-xs leading-5 text-green-500">●</span>
         <div className="min-w-0 flex-1">
           <div className="flex items-baseline gap-1.5">
-            <span className="shrink-0 text-xs opacity-40">
-              #{issue.number}
-            </span>
+            <span className="shrink-0 text-xs opacity-40">#{issue.number}</span>
             <span className="truncate text-sm leading-5">{issue.title}</span>
           </div>
           <div className="mt-1 flex flex-wrap items-center gap-x-1.5 gap-y-1">
@@ -161,9 +146,7 @@ function IssueRow({ issue, isDark }: IssueRowProps): ReactElement {
             />
             <span className="text-xs opacity-50">{issue.user.login}</span>
             <span className="text-xs opacity-30">·</span>
-            <span className="text-xs opacity-50">
-              {relativeTime(issue.created_at)}
-            </span>
+            <span className="text-xs opacity-50">{relativeTime(issue.created_at)}</span>
             {issue.labels.map((label) => (
               <LabelChip key={label.name} label={label} />
             ))}
@@ -185,9 +168,7 @@ export default function App(): ReactElement {
 
   const [ownerInput, setOwnerInput] = useState(savedOwner);
   const [repoInput, setRepoInput] = useState(savedRepo);
-  const [configured, setConfigured] = useState(
-    Boolean(savedOwner && savedRepo),
-  );
+  const [configured, setConfigured] = useState(Boolean(savedOwner && savedRepo));
   const [showSettings, setShowSettings] = useState(false);
 
   const [activeTab, setActiveTab] = useState<Tab>("prs");
@@ -212,18 +193,14 @@ export default function App(): ReactElement {
   // ── Fetch helpers ─────────────────────────────────────────────────────────
 
   const fetchPRs = useCallback(async (o: string, r: string) => {
-    const res = await fetch(
-      `https://api.github.com/repos/${o}/${r}/pulls?state=open&per_page=30`,
-    );
+    const res = await fetch(`https://api.github.com/repos/${o}/${r}/pulls?state=open&per_page=30`);
     if (!res.ok) throw new Error(apiErrorMessage(res.status));
     const data = (await res.json()) as PR[];
     setPrs(data);
   }, []);
 
   const fetchIssues = useCallback(async (o: string, r: string) => {
-    const res = await fetch(
-      `https://api.github.com/repos/${o}/${r}/issues?state=open&per_page=30`,
-    );
+    const res = await fetch(`https://api.github.com/repos/${o}/${r}/issues?state=open&per_page=30`);
     if (!res.ok) throw new Error(apiErrorMessage(res.status));
     const data = (await res.json()) as Issue[];
     // GitHub's issues endpoint includes PRs — filter them out
@@ -238,16 +215,12 @@ export default function App(): ReactElement {
         await Promise.all([fetchPRs(o, r), fetchIssues(o, r)]);
         setLastFetched(Date.now());
       } catch (err) {
-        setError(
-          err instanceof Error
-            ? err.message
-            : "Could not load data from GitHub",
-        );
+        setError(err instanceof Error ? err.message : "Could not load data from GitHub");
       } finally {
         setLoading(false);
       }
     },
-    [fetchPRs, fetchIssues],
+    [fetchPRs, fetchIssues]
   );
 
   // Fetch on initial load if already configured
@@ -267,13 +240,7 @@ export default function App(): ReactElement {
     if (!o || !r) return;
     const id = setInterval(() => void fetchAll(o, r), 5 * 60 * 1000);
     return () => clearInterval(id);
-  }, [
-    configured,
-    showSettings,
-    context?.config.owner,
-    context?.config.repo,
-    fetchAll,
-  ]);
+  }, [configured, showSettings, context?.config.owner, context?.config.repo, fetchAll]);
 
   // ── Handlers ──────────────────────────────────────────────────────────────
 
@@ -304,10 +271,7 @@ export default function App(): ReactElement {
   const owner = (context?.config.owner as string | undefined) ?? "";
   const repo = (context?.config.repo as string | undefined) ?? "";
 
-  const minutesAgo =
-    lastFetched !== null
-      ? Math.floor((Date.now() - lastFetched) / 60000)
-      : null;
+  const minutesAgo = lastFetched !== null ? Math.floor((Date.now() - lastFetched) / 60000) : null;
 
   const inputClass = `rounded border px-3 py-2 text-sm outline-none focus:ring-1 ${
     isDark
@@ -320,9 +284,7 @@ export default function App(): ReactElement {
   // Show loading state while waiting for context from host
   if (!context) {
     return (
-      <div className="flex h-full items-center justify-center text-xs opacity-40">
-        Connecting…
-      </div>
+      <div className="flex h-full items-center justify-center text-xs opacity-40">Connecting…</div>
     );
   }
 
@@ -330,14 +292,10 @@ export default function App(): ReactElement {
 
   if (!configured || showSettings) {
     return (
-      <div
-        className={`flex h-full flex-col ${isDark ? "text-zinc-100" : "text-zinc-900"}`}
-      >
+      <div className={`flex h-full flex-col ${isDark ? "text-zinc-100" : "text-zinc-900"}`}>
         {/* Settings sub-header when reconfiguring an already-configured repo */}
         {configured && showSettings && (
-          <div
-            className={`flex items-center gap-2 border-b px-3 py-2 ${borderClass}`}
-          >
+          <div className={`flex items-center gap-2 border-b px-3 py-2 ${borderClass}`}>
             <span className="flex-1 text-sm font-medium">Settings</span>
             <button
               className="text-xs opacity-50 hover:opacity-100"
@@ -395,13 +353,9 @@ export default function App(): ReactElement {
   // ── Main view (tabbed: PRs | Issues) ─────────────────────────────────────
 
   return (
-    <div
-      className={`flex h-full flex-col ${isDark ? "text-zinc-100" : "text-zinc-900"}`}
-    >
+    <div className={`flex h-full flex-col ${isDark ? "text-zinc-100" : "text-zinc-900"}`}>
       {/* Header */}
-      <div
-        className={`flex items-center gap-2 border-b px-3 py-2 ${borderClass}`}
-      >
+      <div className={`flex items-center gap-2 border-b px-3 py-2 ${borderClass}`}>
         <span className="flex-1 truncate text-sm font-medium">
           {owner}/{repo}
         </span>
@@ -450,14 +404,10 @@ export default function App(): ReactElement {
       {/* Content */}
       <div className="flex-1 overflow-y-auto">
         {loading && (
-          <div className="flex h-full items-center justify-center text-sm opacity-50">
-            Loading…
-          </div>
+          <div className="flex h-full items-center justify-center text-sm opacity-50">Loading…</div>
         )}
 
-        {!loading && error && (
-          <div className="px-3 py-4 text-sm text-red-400">{error}</div>
-        )}
+        {!loading && error && <div className="px-3 py-4 text-sm text-red-400">{error}</div>}
 
         {!loading && !error && activeTab === "prs" && (
           <>
@@ -466,9 +416,7 @@ export default function App(): ReactElement {
                 No open pull requests
               </div>
             ) : (
-              prs.map((pr) => (
-                <PRRow key={pr.number} pr={pr} isDark={isDark} />
-              ))
+              prs.map((pr) => <PRRow key={pr.number} pr={pr} isDark={isDark} />)
             )}
           </>
         )}
@@ -480,9 +428,7 @@ export default function App(): ReactElement {
                 No open issues
               </div>
             ) : (
-              issues.map((issue) => (
-                <IssueRow key={issue.number} issue={issue} isDark={isDark} />
-              ))
+              issues.map((issue) => <IssueRow key={issue.number} issue={issue} isDark={isDark} />)
             )}
           </>
         )}

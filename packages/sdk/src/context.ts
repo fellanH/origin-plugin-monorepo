@@ -1,8 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import type {
-  IframePluginContext,
-  HostToPluginMessage,
-} from "@origin-cards/api";
+import type { IframePluginContext, HostToPluginMessage } from "@origin-cards/api";
 
 /**
  * Extended context type returned by usePluginContext.

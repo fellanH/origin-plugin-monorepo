@@ -10,18 +10,14 @@ import type { HostToPluginMessage } from "@origin-cards/api";
  */
 export function useBusChannel(
   channel: string,
-  handler?: (payload: unknown) => void,
+  handler?: (payload: unknown) => void
 ): (payload: unknown) => void {
   useEffect(() => {
     window.parent.postMessage({ type: "ORIGIN_BUS_SUBSCRIBE", channel }, "*");
 
     function onMessage(event: MessageEvent) {
       const msg = event.data as HostToPluginMessage;
-      if (
-        msg.type === "ORIGIN_BUS_EVENT" &&
-        msg.channel === channel &&
-        handler
-      ) {
+      if (msg.type === "ORIGIN_BUS_EVENT" && msg.channel === channel && handler) {
         handler(msg.payload);
       }
     }
@@ -30,21 +26,15 @@ export function useBusChannel(
 
     return () => {
       window.removeEventListener("message", onMessage);
-      window.parent.postMessage(
-        { type: "ORIGIN_BUS_UNSUBSCRIBE", channel },
-        "*",
-      );
+      window.parent.postMessage({ type: "ORIGIN_BUS_UNSUBSCRIBE", channel }, "*");
     };
   }, [channel, handler]);
 
   const publish = useCallback(
     (payload: unknown) => {
-      window.parent.postMessage(
-        { type: "ORIGIN_BUS_PUBLISH", channel, payload },
-        "*",
-      );
+      window.parent.postMessage({ type: "ORIGIN_BUS_PUBLISH", channel, payload }, "*");
     },
-    [channel],
+    [channel]
   );
 
   return publish;

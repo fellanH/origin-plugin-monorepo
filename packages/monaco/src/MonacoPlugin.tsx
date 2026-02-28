@@ -1,11 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import Editor from "@monaco-editor/react";
-import {
-  openDialog,
-  readTextFile,
-  writeTextFile,
-  useBusChannel,
-} from "@origin-cards/sdk";
+import { openDialog, readTextFile, writeTextFile, useBusChannel } from "@origin-cards/sdk";
 import type { IframePluginContextWithConfig } from "@origin-cards/sdk";
 
 function getLanguage(filePath: string): string {
@@ -33,11 +28,7 @@ function basename(filePath: string): string {
   return filePath.split(/[\\/]/).pop() ?? filePath;
 }
 
-export default function MonacoPlugin({
-  context,
-}: {
-  context: IframePluginContextWithConfig;
-}) {
+export default function MonacoPlugin({ context }: { context: IframePluginContextWithConfig }) {
   const [filePath, setFilePath] = useState<string | null>(null);
   const [content, setContent] = useState<string>("");
   const [language, setLanguage] = useState<string>("plaintext");
@@ -90,7 +81,7 @@ export default function MonacoPlugin({
     // openFile is defined in render scope — stable ref not needed here since
     // useBusChannel already handles cleanup on channel/handler changes.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [],
+    []
   );
 
   useBusChannel("origin:workspace/active-path", handleActivePath);

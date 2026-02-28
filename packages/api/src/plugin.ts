@@ -31,19 +31,14 @@ export interface OriginChannelMap {
 /** Pub/sub bus injected into every plugin via PluginContext. */
 export interface PluginBus {
   /** Broadcast a value on a channel. Cached as the last value. */
-  publish<K extends keyof OriginChannelMap>(
-    channel: K,
-    payload: OriginChannelMap[K],
-  ): void;
+  publish<K extends keyof OriginChannelMap>(channel: K, payload: OriginChannelMap[K]): void;
   /** Subscribe to a channel. Returns an unsubscribe function. */
   subscribe<K extends keyof OriginChannelMap>(
     channel: K,
-    handler: (payload: OriginChannelMap[K]) => void,
+    handler: (payload: OriginChannelMap[K]) => void
   ): () => void;
   /** Synchronously read the last published value on a channel. */
-  read<K extends keyof OriginChannelMap>(
-    channel: K,
-  ): OriginChannelMap[K] | undefined;
+  read<K extends keyof OriginChannelMap>(channel: K): OriginChannelMap[K] | undefined;
 }
 
 /** Metadata declared by every plugin. Shown in the Launcher UI. */
@@ -66,12 +61,7 @@ export interface PluginManifest {
 }
 
 /** Panel lifecycle event names emitted by PluginHost. */
-export type PluginLifecycleEvent =
-  | "focus"
-  | "blur"
-  | "resize"
-  | "zoom"
-  | "zoom-exit";
+export type PluginLifecycleEvent = "focus" | "blur" | "resize" | "zoom" | "zoom-exit";
 
 /** Runtime context injected by PluginHost into every plugin component */
 export interface PluginContext {
@@ -114,10 +104,7 @@ export interface PluginContext {
    * @example
    * const result = await context.invoke<string>("plugin:fs|read_text_file", { path: "/etc/hosts" });
    */
-  invoke<T = unknown>(
-    command: string,
-    args?: Record<string, unknown>,
-  ): Promise<T>;
+  invoke<T = unknown>(command: string, args?: Record<string, unknown>): Promise<T>;
   /**
    * Subscribe to a named host-push event stream (e.g. `"pty:data"`).
    * Returns an unsubscribe function — call it in your plugin's cleanup.
@@ -128,7 +115,7 @@ export interface PluginContext {
   onEvent(
     event: string,
     args: Record<string, unknown>,
-    handler: (payload: unknown) => void,
+    handler: (payload: unknown) => void
   ): () => void;
 }
 

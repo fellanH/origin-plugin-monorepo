@@ -10,8 +10,4 @@ export type {
 
 export { useBusChannel } from "./useBusChannel";
 
-export type {
-  IframePluginContext,
-  HostToPluginMessage,
-  PluginToHostMessage,
-} from "./iframe";
+export type { IframePluginContext, HostToPluginMessage, PluginToHostMessage } from "./iframe";

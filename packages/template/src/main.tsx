@@ -21,9 +21,7 @@ export default function TemplatePlugin({ context }: { context: PluginContext }) 
       }}
     >
       <p style={{ margin: 0, fontWeight: 500 }}>Hello from Template Plugin</p>
-      <p style={{ margin: 0, fontSize: "0.75rem", opacity: 0.5 }}>
-        card: {context.cardId}
-      </p>
+      <p style={{ margin: 0, fontSize: "0.75rem", opacity: 0.5 }}>card: {context.cardId}</p>
     </div>
   );
 }
