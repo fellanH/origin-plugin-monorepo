@@ -6,7 +6,7 @@ export const manifest: PluginManifest = {
   version: "0.0.1",
   description: "Full PTY terminal",
   icon: ">_",
-  requiredCapabilities: ["pty"],
+  requiredCapabilities: ["pty", "fs:read"],
 };
 
 export default manifest;
