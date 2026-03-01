@@ -26,6 +26,16 @@ export interface OriginChannelMap {
     /** Plugin ID of the publisher, e.g. "com.origin.filetree". */
     source: string;
   };
+  /**
+   * Published by the terminal plugin when the shell's current working
+   * directory changes, detected via OSC 7 escape sequences.
+   */
+  "com.origin.terminal:cwd": {
+    /** Absolute filesystem path of the current working directory. */
+    path: string;
+    /** Card ID of the terminal instance that published the event. */
+    cardId: string;
+  };
 }
 
 /** Pub/sub bus injected into every plugin via PluginContext. */
