@@ -1,6 +1,11 @@
 # origin-plugin-monorepo
 
-The official plugin collection for [Origin](https://github.com/fellanH/origin) — and the starting point for building your own.
+The official plugin collection for [Origin](https://github.com/fellanH/origin) — and the **canonical starting point for external plugin development**.
+
+If you want to build a plugin for Origin, **start here**. Clone this repo, copy `packages/template`, and follow the [Getting started](#getting-started) instructions below.
+
+> **Note — origin/packages/template/**
+> The main Origin repo contains a minimal in-tree template at [`packages/template/`](https://github.com/fellanH/origin/tree/main/packages/template). That template is an internal reference used by the Origin core team and does not include the full development tooling (DevShell, watch-install, mock PluginContext) provided by this repo. External plugin authors should always use this monorepo as their starting point. See [fellanH/origin#122](https://github.com/fellanH/origin/issues/122) for background.
 
 ## Packages
 
